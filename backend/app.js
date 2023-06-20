@@ -20,11 +20,14 @@ const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(express.json());
-app.use(helmet);
+
 app.use(limiter);
+app.use(helmet());
 
 app.use(router);
 app.use(errors());
 app.use(errorHandler);
 
-app.listen(PORT);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
