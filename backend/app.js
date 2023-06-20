@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const { errors } = require('celebrate');
+const cors = require('cors');
 
 const errorHandler = require('./middlewares/errorHandler');
 const router = require('./routes');
@@ -18,7 +19,7 @@ mongoose.connect('mongodb://127.0.0.1/mestodb');
 
 const { PORT = 3000 } = process.env;
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 
 app.use(limiter);
