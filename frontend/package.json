@@ -13,7 +13,6 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -39,7 +38,6 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://nasdermn.github.io/react-mesto-auth/",
   "devDependencies": {
     "gh-pages": "^5.0.0"
   }
