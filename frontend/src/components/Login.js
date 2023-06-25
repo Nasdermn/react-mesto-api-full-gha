@@ -1,9 +1,8 @@
-import { useState } from "react";
-import authApi from "../utils/AuthApi";
+import { useState } from 'react';
 
 function Login({ onLogin }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   function handleUserAuthorization(e) {
     e.preventDefault();
@@ -28,8 +27,7 @@ function Login({ onLogin }) {
           name="email"
           type="email"
           placeholder="Email"
-          required = {true}
-        ></input>
+          required={true}></input>
         <span className="input-error email-input-error" />
         <input
           className="auth__input"
@@ -37,8 +35,7 @@ function Login({ onLogin }) {
           name="password"
           type="password"
           placeholder="Пароль"
-          required = {true}
-        ></input>
+          required={true}></input>
         <span className="input-error password-input-error" />
         <button type="submit" className="auth__button">
           Войти

@@ -7,12 +7,12 @@ class AuthApi {
   handleResponse(res) {
     return res.ok
       ? res.json()
-      : Promise.reject("Ошибка при обращении к серверу в компоненте AuthApi");
+      : Promise.reject('Ошибка при обращении к серверу в компоненте AuthApi');
   }
 
   registerUser(email, password) {
     return fetch(`${this.url}/signup`, {
-      method: "POST",
+      method: 'POST',
       headers: this.headers,
       body: JSON.stringify({ email, password }),
     }).then(this.handleResponse);
@@ -20,7 +20,7 @@ class AuthApi {
 
   loginUser(email, password) {
     return fetch(`${this.url}/signin`, {
-      method: "POST",
+      method: 'POST',
       headers: this.headers,
       body: JSON.stringify({ email, password }),
     }).then(this.handleResponse);
@@ -28,9 +28,9 @@ class AuthApi {
 
   tokenCheck(jwt) {
     return fetch(`${this.url}/users/me`, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${jwt}`,
       },
     }).then(this.handleResponse);
@@ -38,9 +38,9 @@ class AuthApi {
 }
 
 const options = {
-  url: "https://auth.nomoreparties.co",
+  url: 'https://api.pr.nasdermn.nomoredomains.work',
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 };
 
