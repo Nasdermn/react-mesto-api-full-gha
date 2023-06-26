@@ -63,7 +63,6 @@ function App() {
     authApi
       .registerUser(email, password)
       .then((res) => {
-        console.log(res);
         if (res) {
           setIsInfoTooltipSuccess(true);
           setIsInfoTooltipOpen(true);
@@ -81,7 +80,6 @@ function App() {
     authApi
       .loginUser(email, password)
       .then((res) => {
-        console.log(res._id);
         localStorage.setItem('jwt', res.token);
         setHeaderEmail(email);
         setLoggedIn(true);
@@ -100,21 +98,21 @@ function App() {
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some(id => id === currentUser._id);
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api
-      .changeLikeCardStatus(card.id, !isLiked)
+      .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
-        setCards((state) => state.map((c) => (c._id === card.id ? newCard : c)));
+        setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
       })
       .catch((err) => console.log(err));
   }
 
   function handleCardDelete(card) {
     api
-      .deleteCard(card.id)
+      .deleteCard(card._id)
       .then((res) => {
-        setCards(cards.filter((element) => element._id !== card.id));
+        setCards(cards.filter((element) => element._id !== card._id));
       })
       .catch((err) => console.log(err));
   }
@@ -139,11 +137,11 @@ function App() {
       .catch((err) => console.log(err));
   }
 
-  function handleAddCard(cardData) {
+  function handleAddCard({ name, link }) {
     api
-      .postCard(cardData.name, cardData.link)
+      .postCard({ name, link })
       .then((card) => {
-        setCards([card, ...cards]);
+        setCards([...cards, card]);
         closeAllPopups();
       })
       .catch((err) => console.log(err));
@@ -157,18 +155,18 @@ function App() {
   }
 
   useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-    if (jwt) {
+    const token = localStorage.getItem('jwt');
+    if (token) {
       authApi
-        .tokenCheck(jwt)
+        .tokenCheck(token)
         .then((res) => {
           if (res) {
             setLoggedIn(true);
             navigate('/');
-            setHeaderEmail(res.data.email);
+            setHeaderEmail(res.email);
           }
         })
-        .catch((error) => console.log(error));
+        .catch((err) => console.log(err));
     }
   }, []);
 

@@ -23,10 +23,16 @@ class AuthApi {
       method: 'POST',
       headers: this.headers,
       body: JSON.stringify({ email, password }),
-    }).then(this.handleResponse);
+    })
+      .then(this.handleResponse)
+      .then((data) => {
+        localStorage.setItem('jwt', data.token);
+        return data;
+      });
   }
 
-  tokenCheck(jwt) {
+  tokenCheck() {
+    const jwt = localStorage.getItem('jwt');
     return fetch(`${this.url}/users/me`, {
       method: 'GET',
       headers: {
@@ -38,9 +44,11 @@ class AuthApi {
 }
 
 const options = {
-  url: 'https://api.pr.nasdermn.nomoredomains.work',
+  url: 'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Access-Control-Allow-Origin': 'localhost:3000',
   },
 };
 

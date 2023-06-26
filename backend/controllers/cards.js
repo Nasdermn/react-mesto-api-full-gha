@@ -66,7 +66,7 @@ const cardLike = (req, res, next) => {
       if (!card) {
         throw new NotFoundError('Карточка не найдена');
       }
-      res.status(201).send(card.likes);
+      res.status(201).send(card);
     })
     .catch(next);
 };
@@ -82,7 +82,7 @@ const cardDislike = (req, res, next) => {
       if (!card) {
         throw new NotFoundError('Карточка не найдена');
       }
-      res.status(200).send(card.likes);
+      res.status(200).send(card);
     })
     .catch(next);
 };

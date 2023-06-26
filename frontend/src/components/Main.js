@@ -61,11 +61,11 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike
         </button>
       </section>
       <section className="elements">
-        {cards.map((card) => (
+        {cards.slice(0).reverse().map((card) => (
           <Card
             key={card._id}
-            id={card._id}
-            ownerId={card.owner._id}
+            _id={card._id}
+            owner={card.owner}
             name={card.name}
             link={card.link}
             likes={card.likes}
