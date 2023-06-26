@@ -119,7 +119,7 @@ class Api {
 }
 
 const api = new Api({
-  url: 'http://localhost:3000',
+  url: 'https://api.pr.nasdermn.nomoredomains.work',
 });
 
 export default api;

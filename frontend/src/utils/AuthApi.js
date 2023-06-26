@@ -44,7 +44,7 @@ class AuthApi {
 }
 
 const options = {
-  url: 'http://localhost:3000',
+  url: 'https://api.pr.nasdermn.nomoredomains.work',
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',

@@ -6,7 +6,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.70.80
+IP 51.250.70.80
 
 Frontend https://pr.nasdermn.nomoredomains.work/
 
